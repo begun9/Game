@@ -1,6 +1,6 @@
 import time
 import random
-x = {'level':1, 'nameHeroes':'', 'меч':int}
+# x = {'level':1, 'nameHeroes':'', 'меч':int}
 def Bitva(Monstor, Heroes):
     if Heroes > Monstor:
         print('Поздравляю, вы выиграли')
@@ -18,25 +18,31 @@ def GameOver():
     print('Хочешь попробовать еще раз? да/д')
     return input()
 def vozmHod(Position):
-    if Position%5==0:
-        print("Право")
-    if (Position+1)%5 == 0:
-        print("Лево")
-    if Position in range(0, 5):
-        print("Вниз")
-    if Position in range(20, 25):
-        print("Вверх")
-def hod(x):
-    i = str(input().lower())
+    pyt = ''
+    if Position%5!=0:
+        pyt = pyt+"Влево "
+        # print("Влево")
+    if (Position+1)%5 != 0:
+        pyt = pyt + "Вправо "
+        # print("Вправо")
+    if Position not in range(20, 25):
+        pyt = pyt + "Вниз "
+        # print("Вниз")
+    if Position not in range(0, 5):
+        pyt = pyt + "Вверх "
+        # print("Вверх")
+    print(pyt)
+def hod(cikl):
+    i = input().lower()
     if i == "вверх":
-        x = x+5
+        cikl = cikl-5
     if i == "вниз":
-        x = x-5
+        cikl = cikl+5
     if i == "влево":
-        x = x-1
+        cikl = cikl-1
     if i == "вправо":
-        x = x+1
-    return х
+        cikl = cikl+1
+    return cikl
 
 
 listMonstors = random.sample(range(0, 25), 10)
@@ -45,11 +51,13 @@ ListPole = [i for i in range(0, 25)]
 
 print(ListPole)
 print(listMonstors)
-x = 0
-while x!=17:
-    vozmHod(x)
-    x = hod(x)
-    print(x)
+cikl= 0
+while cikl!=17:
+    vozmHod(cikl)
+    cikl = hod(cikl)
+    if cikl in listMonstors:
+        print("Монстор")
+    print(cikl)
 
 
 
