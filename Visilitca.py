@@ -31,6 +31,7 @@ def vozmHod(Position):
     if Position not in range(0, 5):
         pyt = pyt + "Вверх "
         # print("Вверх")
+
     print(pyt)
 def hod(cikl):
     i = input().lower()
