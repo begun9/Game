@@ -37,20 +37,20 @@ def hod(cikl):
     i = input().lower()
     if i == "вверх":
         cikl = cikl-5
-    if i == "вниз":
+    elif i == "вниз":
         cikl = cikl+5
-    if i == "влево":
+    elif i == "влево":
         cikl = cikl-1
-    if i == "вправо":
+    elif i == "вправо":
         cikl = cikl+1
+    else:
+        print("Ой, туда я не хочу идти")
+
     return cikl
 
-
 listMonstors = random.sample(range(0, 25), 10)
-# ListPole = [c for c in range(0, 25) if c not in listMonstors]
 ListPole = [i for i in range(0, 25)]
 
-print(ListPole)
 print(listMonstors)
 cikl= 0
 while cikl!=17:

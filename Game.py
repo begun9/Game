@@ -2,6 +2,8 @@ import time
 import random
 
 x = {'level':1, 'nameHeroes':'', 'меч':5}
+listMonstors = random.sample(range(1, 25), 10)
+
 # Оружие героя
 def items():
     global x
@@ -20,26 +22,22 @@ def Monstrs():
     lev = random.randint(1,4)
     return lev
 # Загрузка в файл
-def OpenFile():
-    f = open("heroes.txt").read()
-    f.write(f)
-    f.close()
-    my_file = open("heroes.txt", "r")
-    print(my_file.read().split())
-    return my_file
+# def OpenFile():
+
 # Выбор двери
-def level1(): #
+def level1(start): #
     print('''Перед тобой две двери, в какую пойдешь? 1 или 2?''')
     otvet = int(input())
-    i = ObrabotkaLevel(otvet)
+    i = ObrabotkaLevel(otvet, start)
 
 def Heroes():
     global x
     for key, item in x.items():
         print(str(key) + ' : '+str(item))
     print('Команды : герой - узнать характеристики героя.')
-def ObrabotkaLevel(Otvet):
+def ObrabotkaLevel(Otvet, start):
     # paramRandom = random.randint(0, 1)
+    global listMonstors
     paramRandom = 1
     print('Ты открыл ' + str(Otvet) + ' и...')
     time.sleep(2)
@@ -50,18 +48,23 @@ def ObrabotkaLevel(Otvet):
         print('Твоя сила '+ str(Sila()))
         if SilaHeroes > Level:
             Vin()
+            listMonstors.remove(start)
         else:
             GameOver()
     if paramRandom == 0:
         Vin()
 
-def Move(moveNext):
+def Move(moveNext, cikl):
     if moveNext == 'да':
-        level1()
+        vozmHod(cikl)
+        cikl = hod(cikl)
+
+        # level1()
     elif moveNext == 'герой':
         Heroes()
     else:
         return
+    return cikl
 
 def Vin():
     print('К тебе вылетает дракон и дает кучу золота! Поздравляю')
@@ -81,19 +84,58 @@ def GameOver():
     print('Хочешь попробовать еще раз? да/д')
     return input()
 
+
+def vozmHod(Position):
+    pyt = ''
+    if Position % 5 != 0:
+        pyt = pyt + "Влево "
+        # print("Влево")
+    if (Position + 1) % 5 != 0:
+        pyt = pyt + "Вправо "
+        # print("Вправо")
+    if Position not in range(20, 25):
+        pyt = pyt + "Вниз "
+        # print("Вниз")
+    if Position not in range(0, 5):
+        pyt = pyt + "Вверх "
+        # print("Вверх")
+
+    print(pyt)
+
+
+def hod(cikl):
+    i = input().lower()
+    if i == "вверх":
+        cikl = cikl - 5
+    elif i == "вниз":
+        cikl = cikl + 5
+    elif i == "влево":
+        cikl = cikl - 1
+    elif i == "вправо":
+        cikl = cikl + 1
+    else:
+        print("Ой, туда я не хочу идти")
+
+    return cikl
+
+
+
+ListPole = [i for i in range(0, 25)]
+
 print('''Привет, как тебя зовут?''')
 x['nameHeroes'] = str(input())
 print('Приветствую тебя, ' + x['nameHeroes'] + '!')
-
+print(listMonstors)
 PlayAgain = ''
+start = 0
 while PlayAgain != 'выход' and PlayAgain != 'нет':
     print('Идем открывать дверь?')
     PlayAgain = input().lower()
-    Move(PlayAgain)
+    start = Move(PlayAgain, start)
+    if start in listMonstors:
+        level1(start)
 
-def Pole():
-    listMonstors = random.sample(range(0, 24), 10)
-    ListPole = [c for c in 24]
+
 
 
 
