@@ -26,7 +26,11 @@ def Monstrs():
 
 # Выбор двери
 def level1(start): #
-    print('''Перед тобой две двери, в какую пойдешь? 1 или 2?''')
+    print('Ты натыкаешься на монстра. ')
+    time.sleep(2)
+    if random.randint(0, 1) == 0:
+        print('Он тебя замечает, теперь тебе нельзя скрыться и он идет к тебе!!!')
+        i = ObrabotkaLevel(otvet, start)
     otvet = int(input())
     i = ObrabotkaLevel(otvet, start)
 
@@ -39,12 +43,12 @@ def ObrabotkaLevel(Otvet, start):
     # paramRandom = random.randint(0, 1)
     global listMonstors
     paramRandom = 1
-    print('Ты открыл ' + str(Otvet) + ' и...')
+    print('Он подошел и...')
     time.sleep(2)
     if paramRandom == 1:
         Level = Monstrs()
         SilaHeroes = Sila()
-        print('К тебе вылетает дракон, его сила '+str(Level))
+        print('Его сила '+str(Level))
         print('Твоя сила '+ str(Sila()))
         if SilaHeroes > Level:
             Vin()
