@@ -133,7 +133,7 @@ print(listMonstors)
 PlayAgain = ''
 start = 0
 while PlayAgain != 'выход' and PlayAgain != 'нет':
-    print('Идем открывать дверь?')
+    print('Что будем делать?')
     PlayAgain = input().lower()
     start = Move(PlayAgain, start)
     if start in listMonstors:
